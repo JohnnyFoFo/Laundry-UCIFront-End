@@ -2,8 +2,12 @@
     display: flex;
 }
 .card{
-    flex: 1
+    flex: 1;
+    height: 10rem;
 }
 .LaundryPage{
-    width: 40%;
+    width: 1%;
+}
+.blurryLaundryPage{
+    filter: blur(1rem);
 }

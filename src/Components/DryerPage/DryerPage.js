@@ -2,6 +2,7 @@ import React from 'react'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import LaundryCard from '../LaundryCard/LaundryCard';
 import './DryerPage.css'
+import { useState } from 'react';
 function DryerPage(props) {
     let washerSetOne = props.washers.slice(0,4)
     let washerSetTwo = props.washers.slice(4,8)
@@ -17,7 +18,7 @@ function DryerPage(props) {
         
         {washerSetOne.map((currentWasher)=>(
             <div className='card'>
-                <LaundryCard id={currentWasher.id.substring(1)}/>
+                <LaundryCard id={currentWasher.id.substring(1)} laundryType='Dryer' onclick={props.onclick} broken={currentWasher.broken} endTime={currentWasher.endTime}/>
             </div>
         ))}
       </div>
@@ -26,7 +27,7 @@ function DryerPage(props) {
         
         {washerSetTwo.map((currentWasher)=>(
             <div className='card'>
-                <LaundryCard id={parseFloat(currentWasher.id.substring(1)) % 4 ==0 ? currentWasher.id.substring(1) % 4 + 4: currentWasher.id.substring(1) % 4}/> 
+                <LaundryCard id={parseFloat(currentWasher.id.substring(1)) % 4 ==0 ? currentWasher.id.substring(1) % 4 + 4: currentWasher.id.substring(1) % 4} laundryType='Dryer' onclick={props.onclick} broken={currentWasher.broken} endTime={currentWasher.endTime}/> 
             </div>
         ))}
       </div>
@@ -35,7 +36,7 @@ function DryerPage(props) {
         
         {washerSetThree.map((currentWasher)=>(
             <div className='card'>
-                <LaundryCard id={parseFloat(currentWasher.id.substring(1)) % 4 ==0 ? currentWasher.id.substring(1) % 4 + 4: currentWasher.id.substring(1) % 4}/>
+                <LaundryCard id={parseFloat(currentWasher.id.substring(1)) % 4 ==0 ? currentWasher.id.substring(1) % 4 + 4: currentWasher.id.substring(1) % 4} laundryType='Dryer' onclick={props.onclicks} broken={currentWasher.broken} endTime={currentWasher.endTime}/>
             </div>
         ))}
       </div>

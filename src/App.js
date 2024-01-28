@@ -5,10 +5,14 @@ import TowerSelector from './Components/TowerSelection/TowerSelection.js'
 import './App.css'
 import LaundryPage from './Components/LaundryPage/LaundryPage.js'
 import DryerPage from './Components/DryerPage/DryerPage.js'
+import Modal from './Components/Modal/Modal.js'
 
 function App() {
 
   const[screen,setScreen] = useState('Home')
+  const[modal,setModal] = useState(false)
+  const[modalinfo,setModalinfo] = useState('')
+
 
   let washers = []
   for (let index1 = 0; index1 < 3; index1++) {
@@ -31,14 +35,42 @@ function App() {
       })
   }}
 
-
+  function home(){
+    setScreen('Home')
+    setModal(false)
+  }
+  function changeModal(washer,tower, machineNumber ){
+    setModal(true)
+    setModalinfo([washer,tower,machineNumber] )
+  }
+  function getMachine(){
+    let returnString = ''
+    if (modalinfo[1] == '0'){
+      returnString += 'Playa '
+    }
+    else if(modalinfo[1] == '1'){
+      returnString += 'Caballo '
+    }
+    else{
+      returnString += 'Mariposa '
+    }
+    if (modalinfo[0] == true){
+      returnString += 'Washing Machine'
+    }
+    else{
+      returnString += 'Dryer'
+    }
+    returnString += ' # '
+    returnString += modalinfo[2]
+    return returnString
+  }
 
   return (
     <div className='App'>
-      <NavBar onclick={setScreen}/>
+      <NavBar onclick={home}/>
       {
         screen == 'Home' && 
-        <div>
+        <div className='TowerSelectors'>
           <div className='Caballo'>
             <TowerSelector towerName='Caballo' backgroundColor='green' onclick={setScreen}/>
           </div>
@@ -53,49 +85,93 @@ function App() {
 
       {
         screen == 'Caballo' && 
-        <div className='LaundryPage'>
-          <h1>Caballo</h1>
-          <div style={{display:'flex'}}>
-              <div style={{flex: 1}}>
-              <LaundryPage washers = {washers.slice(12,24)} dryers = {dryers.slice(12,24)}/>
-              </div>
-              <div style={{flex:1}}>
-              <DryerPage washers = {washers.slice(12,24)} dryers = {dryers.slice(12,24)}/>
-              </div>
+        <div>
+
+          {
+            modal == true && <div>
+              
+              <Modal machine={getMachine()}/>
             </div>
+          }
+        
+        <div className={modal == true? 'blurryLaundryPage':'LaundryPage'}>
+          <h1 style={{textAlign:'center'}}>Caballo</h1>
+          <div style={{display:'flex', justifyContent: 'space-between'}}>
+
+
+              <div style={{flex: 1}}>
+              <LaundryPage washers = {washers.slice(12,24)} dryers = {dryers.slice(12,24)} onclick ={changeModal} modal_state={modal}/>
+              </div>
+
+
+              <div style={{flex:1}}>
+              <DryerPage washers = {washers.slice(12,24)} dryers = {dryers.slice(12,24)} onclick ={changeModal} modal_state={modal}/>
+              </div>
+
+          </div>
+
+        </div>
         </div>
       }
       
       {
         screen == 'Mariposa' && 
+
         <div>
-          <div className='LaundryPage'>
-            <h1>Mariposa</h1>
-            <div style={{display:'flex'}}>
-              <div style={{flex: 1}}>
-              <LaundryPage washers = {washers.slice(24,36)} dryers = {dryers.slice(24,36)}/>
-              </div>
-              <div style={{flex:1}}>
-              <DryerPage washers = {washers.slice(24,36)} dryers = {dryers.slice(24,36)}/>
-              </div>
+           {
+            modal == true && <div>
+              
+              <Modal machine={getMachine()}/>
             </div>
-        </div>
+          }
+
+          <div className={modal == true? 'blurryLaundryPage':'LaundryPage'}>
+            <h1 style={{textAlign:'center'}}>Mariposa</h1>
+            <div style={{display:'flex'}}>
+
+
+              <div style={{flex: 1}}>
+              <LaundryPage washers = {washers.slice(24,36)} dryers = {dryers.slice(24,36)} onclick ={changeModal} modal_state={modal}/>
+              </div>
+
+
+              <div style={{flex:1}}>
+              <DryerPage washers = {washers.slice(24,36)} dryers = {dryers.slice(24,36)} onclick ={changeModal} modal_state={modal}/>
+              </div>
+
+
+            </div>
+
+          </div>
+
         </div>
       }
       {
         screen == 'Playa' && 
         <div>
-          <div className='LaundryPage'>
-          <h1>Playa</h1>
-          <div style={{display:'flex'}}>
-              <div style={{flex: 1}}>
-              <LaundryPage washers = {washers.slice(0,12)} dryers = {dryers.slice(0,12)}/>
-              </div>
-              <div style={{flex:1}}>
-              <DryerPage washers = {washers.slice(0,12)} dryers = {dryers.slice(0,12)}/>
-              </div>
+           {
+            modal == true && <div>
+              
+              <Modal machine={getMachine()}/>
             </div>
-        </div>
+          }
+          <div className={modal == true? 'blurryLaundryPage':'LaundryPage'}>
+          <h1 style={{textAlign:'center'}}>Playa</h1>
+          <div style={{display:'flex'}}>
+
+
+              <div style={{flex: 1, marginLeft: '10%'}}>
+              <LaundryPage washers = {washers.slice(0,12)} dryers = {dryers.slice(0,12)} onclick ={changeModal} modal_state={modal}/>
+              </div>
+
+
+              <div style={{flex:1, marginLeft: '50%'}}>
+              <DryerPage washers = {washers.slice(0,12)} dryers = {dryers.slice(0,12)} onclick ={changeModal} modal_state={modal}/>
+              </div>
+
+
+            </div>
+          </div>
         </div>
       }
 

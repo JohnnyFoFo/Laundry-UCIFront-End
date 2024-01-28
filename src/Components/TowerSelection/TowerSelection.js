@@ -13,7 +13,7 @@ import ButterflyImage from '../../Images/Butterfly.png'
 function TowerSelection(props) {
   return (
     
-    <div className= 'TowerSelection' style={{backgroundColor: 'whitesmoke'}} onClick={()=>props.onclick(props.towerName)}>
+    <div className= 'TowerSelection' onClick={()=>props.onclick(props.towerName)}>
         <Card sx={{ minWidth: 50 }} className='Card' style={{color:'whitesmoke', backgroundColor: props.backgroundColor, cursor: 'pointer'}}>
       <CardContent>
 

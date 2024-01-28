@@ -1,8 +1,17 @@
 .LaundryCard{
     height: 10rem !important;
-    width: 10rem !important;
+    width: 8rem !important;
+    cursor: pointer;
 }
 .washingmachineimage{
-    height: 5rem;
-    width: 5rem;
+    height: 1rem !important;
+    width: 1rem !important;
+}
+.laundryImage{
+    height: 3rem;
+    margin-left: 25%;
+    width: 3rem;
+}
+.status{
+    margin-bottom: 50%;
 }

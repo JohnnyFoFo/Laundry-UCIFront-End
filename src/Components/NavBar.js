@@ -21,7 +21,7 @@ export default function ButtonAppBar(props) {
           >
             
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={{cursor:'pointer'}} onClick={()=>props.onclick('Home')}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={{cursor:'pointer'}} onClick={()=>props.onclick()}>
             Laundry@UCI
           </Typography>
 

@@ -1,0 +1,9 @@
+.Floor{
+    display: flex;
+}
+.card{
+    flex: 1
+}
+.LaundryPage{
+    width: 40%;
+}
